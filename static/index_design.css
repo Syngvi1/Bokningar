@@ -1,0 +1,83 @@
+/* Main body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('https://www.mdu.se/images/18.4c0a3a85176384476181d033/1607529367454/_DSC0532.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Logo styling */
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.logo img {
+    width: 150px;
+}
+
+/* Main content styling */
+.main-content {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Content overlay styling (only covers text and buttons) */
+.content-overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* Big text styling */
+.big-text {
+    font-size: 4.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
+}
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Center both buttons */
+    gap: 15px; /* Add space between the buttons */
+}
+
+.btn, .btn1 {
+    background-color: #FF6A00;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 1.2em;
+}
+
+.btn:hover, .btn1:hover {
+    background-color: #cc5500;
+}
+
+
+.btn {
+    background-color: #FF6A00;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 1.2em;
+}
+
+.btn:hover {
+    background-color: #cc5500;
+}

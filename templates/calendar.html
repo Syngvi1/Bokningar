@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Välj Datum och Tid</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/calendar_design.css') }}">
+</head>
+<body>
+    <div class="calendar-container">
+        <h1>Bestäm Datum och Tid</h1>
+        <form id="booking-form" action="/choose-date/{{ school_name }}" method="POST">
+            <input type="hidden" id="selected-date" name="selected-date">
+            <input type="hidden" id="selected-time-slot" name="selected-time-slot">
+
+            <!-- Month navigation -->
+            <div class="month-navigation">
+                <a href="{{ url_for('choose_date', school_name=school_name, year=prev_year, month=prev_month) }}" class="month-button" id="prev-month">&lt;</a>
+                <h1>{{ month }} {{ year }}</h1>
+                <a href="{{ url_for('choose_date', school_name=school_name, year=next_year, month=next_month) }}" class="month-button" id="next-month">&gt;</a>
+            </div>
+
+            <!-- Weekdays header -->
+            <div class="weekdays-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sön</th>
+                            <th>Mån</th>
+                            <th>Tis</th>
+                            <th>Ons</th>
+                            <th>Tor</th>
+                            <th>Fre</th>
+                            <th>Lör</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ days_html | safe }} <!-- Inject the days with time slots here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="selected-info"></p>
+
+            <button type="submit" id="confirm-booking">Bekräfta Bokning</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Handle time slot selection
+            document.querySelectorAll('.time-slot.available').forEach(function (slot) {
+                slot.addEventListener('click', function () {
+                    const date = this.dataset.date;
+                    const timeSlot = this.dataset.time;
+
+                    // Remove the active class from any previously selected time slot
+                    document.querySelectorAll('.time-slot').forEach(function (slot) {
+                        slot.classList.remove('active');
+                    });
+
+                    // Add the active class to the clicked time slot
+                    this.classList.add('active');
+
+                    // Update hidden input fields with the selected date and time
+                    document.getElementById('selected-date').value = date;
+                    document.getElementById('selected-time-slot').value = timeSlot;
+                    document.getElementById('selected-info').innerText = `Valt Datum: ${date} | Tidsspann: ${timeSlot}`;
+                });
+            });
+
+            // Handle form submission
+            document.getElementById('confirm-booking').addEventListener('click', function () {
+                const selectedDate = document.getElementById('selected-date').value;
+                const selectedTimeSlot = document.getElementById('selected-time-slot').value;
+
+                if (selectedDate && selectedTimeSlot) {
+                    document.getElementById('booking-form').submit();
+                } else {
+                    alert('Vänligen välj både ett datum och ett tidsspann innan du bekräftar.');
+                }
+            });
+
+            // Add event listeners for arrow keys to change months
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'ArrowLeft') {
+                    // Simulate a click on the previous month button
+                    document.getElementById('prev-month').click();
+                }
+                if (event.key === 'ArrowRight') {
+                    // Simulate a click on the next month button
+                    document.getElementById('next-month').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

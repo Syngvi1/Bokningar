@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bokningsdetaljer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='booking_details.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bokningsdetaljer</h1>
+        <form action="/booking-details/{{ school_name }}" method="POST">
+            <!-- Hidden fields for school information -->
+            <input type="hidden" name="address" value="{{ address }}">
+            <input type="hidden" name="city" value="{{ city }}">
+            <input type="hidden" name="phone" value="{{ phone }}">
+
+            <!-- Lokal Section -->
+            <h2>Lokal</h2>
+            <label>
+                <input type="checkbox" name="local" value="Aula"> Aula
+            </label>
+            <label>
+                <input type="checkbox" name="local" value="Klassrum"> Klassrum
+            </label>
+            <label>
+                <input type="checkbox" name="local" value="Almänt Utrymme"> Almänt Utrymme
+            </label>
+
+            <!-- Utrustning Section -->
+            <h2>Utrustning</h2>
+            <label>
+                <input type="checkbox" name="equipment" value="Projector"> Projector
+            </label>
+            <label>
+                <input type="checkbox" name="equipment" value="Whiteboard"> Whiteboard
+            </label>
+
+            <!-- Begränsningar Section -->
+            <h2>Begränsningar</h2>
+            <label>
+                <input type="checkbox" name="limitations" value="Energi Dryck"> Energi Dryck Förbud
+            </label>
+            <label>
+                <input type="checkbox" name="limitations" value="Godis Förbud"> Godis Förbud
+            </label>
+
+            <!-- Övriga regler -->
+            <label for="rules">Övriga regler (om några):</label>
+            <textarea id="rules" name="rules" rows="4" placeholder="Skriv här..."></textarea>
+
+            <button type="submit">Nästa</button>
+        </form>
+    </div>
+</body>
+</html>

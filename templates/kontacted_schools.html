@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontacted Schools</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='kontacted_schools.css') }}">
+</head>
+<body>
+    <h1>Bokade Skolor</h1>
+    <a href="/schools" class="back-button">Back to School List</a>
+    <table>
+        <thead>
+            <tr>
+                <th>skola</th>
+                <th>Address</th>
+                <th>Stad</th>
+                <th>Telefon</th>
+                <th>Lokal</th>
+                <th>Utrustning</th>
+                <th>Regler</th>
+                <th>Övrigt</th>
+                <th>Datum</th>
+                <th>Tid</th>
+                <th>Redigera</th> 
+                <th>Scorecard</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.school_name }}</td>
+                <td>{{ contact.address }}</td>
+                <td>{{ contact.city }}</td>
+                <td>{{ contact.phone }}</td>
+                <td>{{ contact.local }}</td>
+                <td>{{ contact.equipment }}</td>
+                <td>{{ contact.limitations }}</td>
+                <td>{{ contact.rules }}</td>
+                <td>{{ contact.date }}</td>
+                <td>{{ contact.time_slot }}</td>
+                <td>
+                    <div class="action-buttons">
+                        <form action="{{ url_for('edit_booking', id=contact.id) }}" method="GET">
+                            <button type="submit" class="edit-button">Edit</button>
+                        </form>
+                        <form action="/delete-booking/{{ contact.id }}" method="POST">
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    </div>
+                </td>                                              
+                <td>
+                    <a href="/scorecard/{{ contact.id }}" class="action-link">View Scorecard</a> |
+                    <a href="/download-scorecard/{{ contact.id }}" class="action-link">Download PDF</a>
+                </td>                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

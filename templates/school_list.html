@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School List</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='school_list.css') }}">
+</head>
+<body>
+    <h1>Lista Över Skolor</h1>
+    <a href="/kontacted-schools" class="back-button">Till Bokade Skolor</a>
+
+    <table id="schoolTable">
+        <thead>
+            <tr>
+                <th>skola</th>
+                <th>Län</th>
+                <th>Address</th>
+                <th>Stad</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Website</th>
+                <th>Ekonomi</th>
+                <th>Estetoska</th>
+                <th>Humanistiska</th>
+                <th>Natur</th>
+                <th>Samhäll</th>
+                <th>Teknik</th>
+                <th>Kontakt</th>
+            </tr>
+            <!-- Search row under the headers -->
+            <tr>
+                <th><input type="text" id="nameSearch" onkeyup="filterTable()" placeholder="Söka namn..."></th>
+                <th><input type="text" id="countySearch" onkeyup="filterTable()" placeholder="Söka län..."></th>
+                <th colspan="12"></th> <!-- Empty cells to align search inputs -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for school in schools %}
+            <tr>
+                <td>{{ school['SKOLENHETENS NAMN'] }}</td>
+                <td>{{ school['LÄNSNAMN'] }}</td>
+                <td>{{ school['BESÖKSADRESS'] }}</td>
+                <td>{{ school['BESÖKSPOSTORT'] }}</td>
+                <td>{{ school['TELENR'] }}</td>
+                <td>{{ school['EPOST'] }}</td>
+                <td><a href="{{ school['WEBB'] }}" target="_blank">{{ school['WEBB'] }}</a></td>
+                <td>{% if school['EKONOMIPROGRAMMET'] == 'J' %}Ja{% else %}Nej{% endif %}</td>
+                <td>{% if school['ESTETISKA PROGRAMMET'] == 'J' %}Ja{% else %}Nej{% endif %}</td>
+                <td>{% if school['HUMANISTISKA PROGRAMMET'] == 'J' %}Ja{% else %}Nej{% endif %}</td>
+                <td>{% if school['NATURVETENSKAPSPROGRAMMET'] == 'J' %}Ja{% else %}Nej{% endif %}</td>
+                <td>{% if school['SAMHÄLLSVETENSKAPSPROGRAMMET'] == 'J' %}Ja{% else %}Nej{% endif %}</td>
+                <td>{% if school['TEKNIKPROGRAMMET'] == 'J' %}Ja{% else %}Nej{% endif %}</td>
+
+                <td>
+                    <!-- Kontakt Button -->
+                    <form action="/booking-details/{{ school['SKOLENHETENS NAMN'] }}" method="GET">
+                        <input type="hidden" name="address" value="{{ school['BESÖKSADRESS'] }}">
+                        <input type="hidden" name="city" value="{{ school['BESÖKSPOSTORT'] }}">
+                        <input type="hidden" name="phone" value="{{ school['TELENR'] }}">
+                        <button type="submit">Kontakt</button>
+                    </form>                    
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- JavaScript to filter table -->
+    <script>
+        function filterTable() {
+            const nameInput = document.getElementById('nameSearch').value.toLowerCase();
+            const countyInput = document.getElementById('countySearch').value.toLowerCase();
+            const table = document.getElementById('schoolTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 2; i < rows.length; i++) { // Start from row 2 to skip the header and search inputs
+                const nameColumn = rows[i].getElementsByTagName('td')[0];
+                const countyColumn = rows[i].getElementsByTagName('td')[1];
+
+                const nameValue = nameColumn.textContent || nameColumn.innerText;
+                const countyValue = countyColumn.textContent || countyColumn.innerText;
+
+                if (
+                    (nameValue.toLowerCase().includes(nameInput) || nameInput === "") &&
+                    (countyValue.toLowerCase().includes(countyInput) || countyInput === "")
+                ) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

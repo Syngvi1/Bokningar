@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking System Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index_design.css') }}">
+</head>
+<body>
+    <!-- Logo section -->
+    <div class="logo">
+        <a href="/">
+            <img src="https://www.mdu.se/images/18.3384d1de17ce9d9b02c74834/1639415494056/MDU%20logotyp.svg" alt="MDU Logo">
+        </a>
+    </div>
+
+    <!-- Main content section with overlay -->
+    <div class="main-content">
+        <div class="content-overlay">
+            <h1 class="big-text">Välkommen till bokningssystem</h1>
+            <p>Se skolorna:</p>
+
+            <div class="button-group">
+                <a class="btn" href="/schools">Skolinformation</a>
+                <a class="btn" href="/kontacted-schools">Bokningar</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

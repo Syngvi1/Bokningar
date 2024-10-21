@@ -1,0 +1,64 @@
+/* Body styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f5;
+}
+
+/* Container styling */
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Heading styling */
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Label styling */
+label {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+/* Checkbox input styling */
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Textarea styling */
+textarea {
+    width: 95%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* Button styling */
+button {
+    width: 100%;
+    background-color: #FF6A00;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #cc5500;
+}

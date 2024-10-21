@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorecard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='scorecard.css') }}">
+</head>
+<body>
+
+    <h1>Booking Scorecard</h1>
+    
+    <div class="scorecard">
+        <h2>School: {{ contact.school_name }}</h2>
+        <p><strong>Address:</strong> {{ contact.address }}</p>
+        <p><strong>Stad:</strong> {{ contact.city }}</p>
+        <p><strong>Telefon:</strong> {{ contact.phone }}</p>
+        <p><strong>Lokal:</strong> {{ contact.local }}</p>
+        <p><strong>Utrustning:</strong> {{ contact.equipment }}</p>
+        <p><strong>Regler:</strong> {{ contact.limitations }}</p>
+        <p><strong>Övrigt:</strong> {{ contact.rules }}</p>
+        <p><strong>Datum:</strong> {{ contact.date }}</p>
+        <p><strong>Tid:</strong> {{ contact.time_slot }}</p>
+    </div>
+
+    <a href="/download-scorecard/{{ contact.id }}" class="download-button">Download PDF</a>
+
+</body>
+</html>

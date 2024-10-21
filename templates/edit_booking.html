@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redigera bokning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit_booking.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Redigera bokning</h1>
+
+        <!-- Single form to edit all fields at once -->
+        <form action="{{ url_for('edit_booking', id=booking.id) }}" method="POST">
+            <label for="school-name">Namn på skola:</label>
+            <input type="text" id="school-name" name="school-name" value="{{ booking.school_name }}" >
+
+            <label for="address">Adress:</label>
+            <input type="text" id="address" name="address" value="{{ booking.address }}" >
+
+            <label for="phone">Telefonnummer:</label>
+            <input type="tel" id="phone" name="phone" value="{{ booking.phone }}" >
+
+            <label for="local">Lokal:</label>
+            <input type="text" id="local" name="local" value="{{ booking.local }}">
+
+            <label for="equipment">Utrustning:</label>
+            <input type="text" id="equipment" name="equipment" value="{{ booking.equipment }}">
+
+            <label for="limitations">Begränsningar:</label>
+            <input type="text" id="limitations" name="limitations" value="{{ booking.limitations }}">
+
+            <label for="rules">Regler:</label>
+            <textarea id="rules" name="rules">{{ booking.rules }}</textarea>
+
+            <label for="date">Välj ett datum:</label>
+            <input type="date" id="date" name="date" value="{{ booking.date }}" >
+
+            <label for="time-slot">Välj ett tidsintervall:</label>
+            <select id="time-slot" name="time-slot">
+                <option value="10:00-12:00" {% if booking.time_slot == '10:00-12:00' %}selected{% endif %}>10:00 - 12:00</option>
+                <option value="12:00-14:00" {% if booking.time_slot == '12:00-14:00' %}selected{% endif %}>12:00 - 14:00</option>
+            </select>
+
+            <!-- Submit button to save all changes and redirect -->
+            <button type="submit">Spara ändringar</button>
+        </form>
+
+        <a href="{{ url_for('kontacted_schools') }}">Tillbaka till bokningar</a>
+    </div>
+</body>
+</html>

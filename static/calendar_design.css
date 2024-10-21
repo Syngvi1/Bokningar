@@ -1,0 +1,217 @@
+/* Body styling */
+body {
+    font-family: 'Roboto', 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Main calendar container */
+.calendar-container {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 800px;
+    padding: 10px;
+}
+
+/* Style for month navigation container */
+.month-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center align the elements */
+    margin-bottom: 20px;
+}
+
+/* Month buttons designed as "<" and ">" */
+.month-button {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1.5em; /* Bigger font for <> look */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin: 0 20px; /* Margin to keep the buttons closer to the month */
+}
+
+.month-button:hover {
+    background-color: #FF6A00;
+    color: white;
+}
+
+
+/* Center the month and year title */
+.month-navigation h1 {
+    font-size: 1.8em;
+    margin: 0;
+    text-align: center;
+}
+
+
+/* Month title box */
+.month-box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.month-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Weekdays header styling */
+.weekdays-box table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+thead th {
+    font-size: 1.2em;
+    color: #4a4a4a;
+    padding: 15px;
+    text-align: center;
+    background-color: #e9ecef;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Dates table */
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+/* Date cell styling */
+tbody td {
+    padding: 15px;
+    text-align: center;
+    background-color: #fff;
+    color: #333;
+    border-radius: 12px;
+    transition: transform 0.3s;
+    cursor: default;
+    font-size: 1em;
+    border: 1px solid #e1e1e1;
+    height: 100px;
+}
+
+/* Date number styling */
+.date-number {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+/* Time slots styling */
+.time-slots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+}
+
+/* Time slot individual box styling */
+.time-slot {
+    background-color: #f1f3f5;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    width: 60px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.time-slot.active {
+    background-color: #FF6A00;
+    color: #fff;
+}
+
+/* Hover effect for time slots */
+.time-slot:hover {
+    background-color: #cc5500;
+    color: #fff;
+}
+
+/* Empty cells for days outside the current month */
+td.empty {
+    background-color: #f0f2f5;
+    cursor: default;
+}
+
+/* Date selection styling */
+.selectable-day {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Weekend days (Saturday and Sunday) */
+.weekend {
+    background-color: #fdf2f2;
+}
+
+/* Navigation buttons */
+.navigation {
+    margin-top: 30px;
+}
+
+.navigation a {
+    text-decoration: none;
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin: 0 15px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.navigation a:hover {
+    background-color: #333;
+}
+
+/* Mobile responsive design */
+@media (max-width: 600px) {
+    td, th {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .month-box h1 {
+        font-size: 1.6em;
+    }
+
+    tbody td {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+#confirm-booking {
+    background-color: #FF6A00;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    margin-top: 20px;
+}
+
+#confirm-booking:hover {
+    background-color: #cc5500;
+    transform: translateY(-3px);
+}
+
+#confirm-booking:active {
+    transform: translateY(0);
+}
